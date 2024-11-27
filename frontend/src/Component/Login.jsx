@@ -5,9 +5,7 @@ import {
   TextField,
   Typography,
   Button,
-  Link,
 } from "@mui/material";
-import { fontSize, fontWeight, height } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -28,20 +26,18 @@ export const Login = () => {
     borderRadius: "0.5rem",
   };
   const [email, setEmail] = useState("");
-  const [aadhaar, setAadhaar] = useState("");
+  const [adhaar, setAdhaar] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/login", { email, aadhaar, password })
-
-      .then(result => {
+      .post("http://localhost:3001/login", { email, adhaar, password })
+      .then((result) => {
         if (result.data === "Success") {
           navigate("/home");
-        } 
-        else {
+        } else {
           alert("Login Failed");
         }
       })
@@ -72,8 +68,8 @@ export const Login = () => {
             label="Enter Registered E-mail ID"
           ></TextField>
           <TextField
-            onChange={(e) => setAadhaar(e.target.value)}
-            name="aadhaar"
+            onChange={(e) => setAdhaar(e.target.value)}
+            name="adhaar"
             style={row}
             label="Enter Your Aadhaar Number"
           ></TextField>

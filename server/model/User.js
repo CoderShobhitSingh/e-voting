@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
       required: true, // Age is mandatory
       min: 21, // Minimum age constraint
     },
-    aadhaar: {
+    adhaar: {
       type: String,
       required: true, // Aadhaar is mandatory
       unique: true, // Ensures no duplicate Aadhaar numbers

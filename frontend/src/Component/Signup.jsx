@@ -29,23 +29,23 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
-  const [aadhaar, setAadhaar] = useState(""); // Updated to "aadhaar"
+  const [adhaar, setAdhaar] = useState(""); // Updated to "adhaar"
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log({ name, email, age, aadhaar, password }); // Debug data being sent
-  
-    axios.post("http://localhost:3001/signup", {
+    console.log({ name, email, age, adhaar, password }); // Debug data being sent
+
+    axios
+      .post("http://localhost:3001/signup", {
         name,
         email,
         age,
-        aadhaar,
+        adhaar, // Updated to match the new backend field name
         password,
       })
       .then((result) => {
-        // console.log("status",result.status)
         if (result.status === 201) {
           console.log("User created successfully");
           navigate("/login");
@@ -53,13 +53,12 @@ const Signup = () => {
       })
       .catch((err) => {
         if (err.response && err.response.status === 400) {
-          window.alert("Email already exists.");
+          window.alert("Email or Aadhaar already exists.");
         } else {
           console.log(err);
         }
       });
   };
-  
 
   return (
     <Grid align="center">
@@ -100,8 +99,8 @@ const Signup = () => {
             label="Enter Your Age"
           ></TextField>
           <TextField
-            onChange={(e) => setAadhaar(e.target.value)}
-            name="aadhaar" // Consistent field name
+            onChange={(e) => setAdhaar(e.target.value)}
+            name="adhaar" // Updated field name
             required
             style={row}
             label="Enter Your Aadhaar Number"
